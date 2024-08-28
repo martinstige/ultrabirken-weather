@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Værmelding for Ultrabirken 2022</title>
+    <title>Værmelding for Ultrabirken 2024</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -8,9 +8,9 @@
       rel="stylesheet"
     />
     <style>
-      body{
+      body {
         padding: 30px;
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
       }
       .grid-container {
         display: grid;
@@ -20,22 +20,42 @@
         padding-bottom: 30px;
       }
     </style>
+    <script type="text/javascript">
+      function setup() {
+        const places = [
+          "1-143301",
+          "1-143338",
+          "1-143249",
+          "1-155853",
+          "1-143508",
+          "1-2309061",
+        ];
+
+        places.forEach((place) => {
+          // console.log("place", place);
+          const div = document.createElement("div");
+          div.className = "forecast";
+          const img = document.createElement("img");
+          img.src = `https://www.yr.no/nb/innhold/${place}/meteogram.svg`;
+
+          const href = document.createElement("a");
+          href.href =
+            `https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/` + place;
+          href.target = "_blank";
+          div.appendChild(href);
+          href.appendChild(img);
+          document.body.querySelector(".listing").appendChild(div);
+          document.body.appendChild(div);
+        });
+
+        window.onload = setup;
+      }
+    </script>
   </head>
-  <body>
+  <body onload="setup()">
     <div>
-      <h1>Værmelding for Ultrabirken 2022</h1>
+      <h1>Værmelding for Ultrabirken 2024</h1>
     </div>
-    <div class="grid-container">
-      <img class="forecast" src="https://www.yr.no/en/content/1-143301/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-143381/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-143304/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-143249/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-155919/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-143276/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-143454/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-144137/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-143362/meteogram.svg" />
-      <img class="forecast" src="https://www.yr.no/en/content/1-143669/meteogram.svg" />
-    </div>
+    <div class="listing"></div>
   </body>
 </html>
